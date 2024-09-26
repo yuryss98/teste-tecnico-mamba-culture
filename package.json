@@ -15,7 +15,8 @@
     "test:unit": "npm test -- -c jest-unit.config.js",
     "test:e2e": "npm test -- -c jest-e2e.config.js",
     "test:coverage": "jest --coverage",
-    "prisma:migrate": "prisma migrate dev && prisma generate"
+    "prisma:migrate": "prisma migrate dev && prisma generate",
+    "prisma:seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.20.0",
