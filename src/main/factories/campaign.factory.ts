@@ -2,6 +2,7 @@ import { PrismaCampaignRepository } from '../../data/repositories/Prisma-campaig
 import { PrismaCategoryRepository } from '../../data/repositories/Prisma-category.repository';
 import { CreateCampaignUseCase } from '../../domain/use-case/campaign/create-campaign.use-case';
 import { DeleteCampaignUseCase } from '../../domain/use-case/campaign/delete-campaign.use-case';
+import { FindAllCampaignUseCase } from '../../domain/use-case/campaign/find-all-campaign.use-case';
 import { CampaingController } from '../../presentation/controllers/campaing.controller';
 
 export const makeCampaingController = (): CampaingController => {
@@ -9,5 +10,10 @@ export const makeCampaingController = (): CampaingController => {
   const categoryRepository = new PrismaCategoryRepository();
   const createCampaignUseCase = new CreateCampaignUseCase(campaignRepository, categoryRepository);
   const deleteCampaignUseCase = new DeleteCampaignUseCase(campaignRepository);
-  return new CampaingController(createCampaignUseCase, deleteCampaignUseCase);
+  const findAllCampaignsUseCase = new FindAllCampaignUseCase(campaignRepository);
+  return new CampaingController(
+    createCampaignUseCase,
+    deleteCampaignUseCase,
+    findAllCampaignsUseCase,
+  );
 };

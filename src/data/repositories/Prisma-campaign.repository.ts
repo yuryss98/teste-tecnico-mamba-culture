@@ -12,6 +12,23 @@ export class PrismaCampaignRepository implements CampaignRepository {
     });
   }
 
+  async findAll(): Promise<Campaign[]> {
+    try {
+      const campaings = await this._prisma.campaigns.findMany({
+        include: {
+          category: true,
+        },
+      });
+      return campaings.map((campaing) => PrismaCampaignMapper
+        .toDomain(campaing, campaing.category));
+    } catch (error) {
+      console.error(error);
+      return [];
+    } finally {
+      await this._prisma.$disconnect();
+    }
+  }
+
   async findById(campaignId: number): Promise<Campaign | null> {
     try {
       const campaign = await this._prisma.campaigns.findUnique({

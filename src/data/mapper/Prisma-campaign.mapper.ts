@@ -15,6 +15,6 @@ export default class PrismaCampaignMapper {
         name: categoryLine.name,
         createdAt: categoryLine.createdAt,
       }),
-    });
+    }, campaignLine.id, campaignLine.createdAt);
   }
 }
