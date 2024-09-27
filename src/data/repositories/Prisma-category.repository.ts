@@ -14,7 +14,7 @@ export class PrismaCategoryRepository implements CategoryRepository {
 
   async findAll(): Promise<Category[]> {
     try {
-      const categories = await this._prisma.categories.findMany();
+      const categories = await this._prisma.categories.findMany({ where: { status: true } });
       return categories.map((category) => PrismaCategoryMapper.toDomain(category));
     } catch (error) {
       console.error(error);
@@ -27,7 +27,7 @@ export class PrismaCategoryRepository implements CategoryRepository {
   async findById(categoryId: number): Promise<Category | null> {
     try {
       const category = await this._prisma.categories.findUnique({
-        where: { id: categoryId },
+        where: { id: categoryId, status: true },
       });
 
       if (!category) return null;

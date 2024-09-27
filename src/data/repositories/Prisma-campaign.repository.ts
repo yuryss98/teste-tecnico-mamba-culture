@@ -15,9 +15,8 @@ export class PrismaCampaignRepository implements CampaignRepository {
   async findAll(): Promise<Campaign[]> {
     try {
       const campaings = await this._prisma.campaigns.findMany({
-        include: {
-          category: true,
-        },
+        where: { status: true },
+        include: { category: true },
       });
       return campaings.map((campaing) => PrismaCampaignMapper
         .toDomain(campaing, campaing.category));
