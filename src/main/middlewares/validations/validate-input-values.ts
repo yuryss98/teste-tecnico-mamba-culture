@@ -2,6 +2,7 @@ import { ValidationError } from 'joi';
 import { Response, NextFunction, Request } from 'express';
 import {
   createCampaingSchema,
+  deleteCampaingSchema,
 } from './schema';
 import CustomError from '../../../domain/error/custom-error';
 
@@ -19,6 +20,12 @@ const checkError = (error: ValidationError | undefined, next: NextFunction) => {
 
 export const validateCreateCampaign = (req: Request, _res: Response, next: NextFunction) => {
   const { error } = createCampaingSchema.validate(req.body);
+
+  return checkError(error, next);
+};
+
+export const validateDeleteCampaign = (req: Request, _res: Response, next: NextFunction) => {
+  const { error } = deleteCampaingSchema.validate(req.body);
 
   return checkError(error, next);
 };

@@ -12,6 +12,39 @@ export class PrismaCampaignRepository implements CampaignRepository {
     });
   }
 
+  async findById(campaignId: number): Promise<Campaign | null> {
+    try {
+      const campaign = await this._prisma.campaigns.findUnique({
+        where: { id: campaignId, status: true },
+        include: {
+          category: true,
+        },
+      });
+
+      if (!campaign) return null;
+
+      return PrismaCampaignMapper.toDomain(campaign, campaign.category);
+    } catch (error) {
+      console.error(error);
+      return null;
+    } finally {
+      await this._prisma.$disconnect();
+    }
+  }
+
+  async delete(campaignId: number): Promise<void> {
+    try {
+      await this._prisma.campaigns.update({
+        where: { id: campaignId },
+        data: { status: false },
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      await this._prisma.$disconnect();
+    }
+  }
+
   async create(campaign: Campaign): Promise<void> {
     try {
       await this._prisma.campaigns.create({
@@ -33,7 +66,7 @@ export class PrismaCampaignRepository implements CampaignRepository {
   async findByName(campaignName: string): Promise<Campaign | null> {
     try {
       const campaign = await this._prisma.campaigns.findUnique({
-        where: { name: campaignName },
+        where: { name: campaignName, status: true },
         include: {
           category: true,
         },
