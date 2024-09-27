@@ -5,7 +5,7 @@ import { FindAllCampaignUseCase } from '../../domain/use-case/campaign/find-all-
 
 export class CampaingController {
   constructor(
-    private createCampaingUseCase: CreateCampaignUseCase,
+    private createCampaignUseCase: CreateCampaignUseCase,
     private deleteCampaignUseCase: DeleteCampaignUseCase,
     private findAllCampaignUseCase: FindAllCampaignUseCase,
   ) { }
