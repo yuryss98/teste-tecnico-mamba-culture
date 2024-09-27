@@ -19,3 +19,12 @@ export const createCampaingSchema = Joi.object({
 export const deleteCampaingSchema = Joi.object({
   campaignId,
 });
+
+export const updateCampaingSchema = Joi.object({
+  name,
+  startDate,
+  endDate,
+  campaignStatus,
+  categoryId,
+  id: campaignId,
+});

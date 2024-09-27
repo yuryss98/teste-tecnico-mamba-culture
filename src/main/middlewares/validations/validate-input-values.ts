@@ -3,6 +3,7 @@ import { Response, NextFunction, Request } from 'express';
 import {
   createCampaingSchema,
   deleteCampaingSchema,
+  updateCampaingSchema,
 } from './schema';
 import CustomError from '../../../domain/error/custom-error';
 
@@ -26,6 +27,12 @@ export const validateCreateCampaign = (req: Request, _res: Response, next: NextF
 
 export const validateDeleteCampaign = (req: Request, _res: Response, next: NextFunction) => {
   const { error } = deleteCampaingSchema.validate(req.body);
+
+  return checkError(error, next);
+};
+
+export const validateUpdateCampaign = (req: Request, _res: Response, next: NextFunction) => {
+  const { error } = updateCampaingSchema.validate(req.body);
 
   return checkError(error, next);
 };

@@ -12,6 +12,26 @@ export class PrismaCampaignRepository implements CampaignRepository {
     });
   }
 
+  async update(campaign: Campaign): Promise<void> {
+    try {
+      await this._prisma.campaigns.update({
+        where: { id: campaign.id as number },
+        data: {
+          name: campaign.props.name,
+          startDate: new Date(campaign.props.startDate),
+          endDate: new Date(campaign.props.endDate),
+          campaignStatus: campaign.props.campaignStatus,
+          categoryId: campaign.props.category.id,
+        },
+
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      await this._prisma.$disconnect();
+    }
+  }
+
   async findAll(): Promise<Campaign[]> {
     try {
       const campaings = await this._prisma.campaigns.findMany({

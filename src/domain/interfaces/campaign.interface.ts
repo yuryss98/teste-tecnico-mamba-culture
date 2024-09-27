@@ -11,3 +11,7 @@ export interface ICreateCampaign {
   campaignStatus: CampaignStatus;
   categoryId: number;
 }
+
+export interface IUpdateCampaign extends ICreateCampaign {
+  id: number;
+}

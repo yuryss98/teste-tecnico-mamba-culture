@@ -6,4 +6,5 @@ export abstract class CampaignRepository {
   abstract findById(campaignId: number): Promise<Campaign | null>;
   abstract findAll(): Promise<Campaign[]>;
   abstract delete(campaignId: number): Promise<void>;
+  abstract update(campaign: Campaign): Promise<void>;
 }

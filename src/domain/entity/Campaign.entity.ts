@@ -33,4 +33,8 @@ export class Campaign {
   get createdAt(): Date | null {
     return this._createdAt;
   }
+
+  set props(campaignProps: CampaignProps) {
+    this._props = campaignProps;
+  }
 }

@@ -2,16 +2,18 @@ import { Request, Response } from 'express';
 import { CreateCampaignUseCase } from '../../domain/use-case/campaign/create-campaign.use-case';
 import { DeleteCampaignUseCase } from '../../domain/use-case/campaign/delete-campaign.use-case';
 import { FindAllCampaignUseCase } from '../../domain/use-case/campaign/find-all-campaign.use-case';
+import { UpdateCampaignUseCase } from '../../domain/use-case/campaign/update-campaign.use-case';
 
 export class CampaingController {
   constructor(
     private createCampaignUseCase: CreateCampaignUseCase,
     private deleteCampaignUseCase: DeleteCampaignUseCase,
     private findAllCampaignUseCase: FindAllCampaignUseCase,
+    private updateCampaignUseCase: UpdateCampaignUseCase,
   ) { }
 
   createCampaing = async (req: Request, res: Response) => {
-    await this.createCampaingUseCase.exec(req.body);
+    await this.createCampaignUseCase.exec(req.body);
 
     return res.status(201).json({
       message: 'Campaign created successfully',
@@ -42,5 +44,11 @@ export class CampaingController {
         createdAt: campaign.createdAt,
       })),
     });
+  };
+
+  updateCampaign = async (req: Request, res: Response) => {
+    await this.updateCampaignUseCase.exec(req.body);
+
+    return res.status(204).end();
   };
 }
