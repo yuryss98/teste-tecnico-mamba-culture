@@ -3,3 +3,4 @@ jest.config.js
 jest-unit.config.js
 jest-e2e.config.js
 prisma/
+coverage/
