@@ -46,6 +46,87 @@
           }
         }
       }
+    },
+    "/api/campaign/create": {
+      "post": {
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Create a campaign",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "startDate",
+                  "endDate",
+                  "campaignStatus",
+                  "categoryId"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Campanhas de Vendas"
+                  },
+                  "startDate": {
+                    "type": "date",
+                    "example": "2024-12-26"
+                  },
+                  "endDate": {
+                    "type": "date",
+                    "example": "2025-01-01"
+                  },
+                  "campaignStatus": {
+                    "type": "string",
+                    "enum": [
+                      "ACTIVE",
+                      "PAUSED",
+                      "EXPIRED"
+                    ]
+                  },
+                  "categoryId": {
+                    "type": "integer",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "New Campaign created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Campaign created successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date or invalid fields"
+          },
+          "404": {
+            "description": "Category Not Found"
+          },
+          "409": {
+            "description": "This campaign already exists"
+          },
+          "422": {
+            "description": "\"campaignStatus\" must be one of [ACTIVE, PAUSED, EXPIRED]"
+          }
+        }
+      }
     }
   }
 }
