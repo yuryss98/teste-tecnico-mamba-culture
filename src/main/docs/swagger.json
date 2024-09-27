@@ -127,6 +127,44 @@
           }
         }
       }
+    },
+    "/api/campaign/delete": {
+      "delete": {
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Delete a campaign",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "campaignId"
+                ],
+                "properties": {
+                  "campaignId": {
+                    "type": "integer",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Campaign deleted"
+          },
+          "400": {
+            "description": "Invalid field"
+          },
+          "404": {
+            "description": "Campaign Not Found"
+          }
+        }
+      }
     }
   }
 }
