@@ -236,6 +236,79 @@
           }
         }
       }
+    },
+    "/api/campaign/update": {
+      "put": {
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Update a campaign",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "startDate",
+                  "endDate",
+                  "campaignStatus",
+                  "categoryId"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Update Campanha de Marketing"
+                  },
+                  "startDate": {
+                    "type": "date",
+                    "example": "2024-12-27"
+                  },
+                  "endDate": {
+                    "type": "date",
+                    "example": "2025-01-02"
+                  },
+                  "campaignStatus": {
+                    "type": "string",
+                    "enum": [
+                      "ACTIVE",
+                      "PAUSED",
+                      "EXPIRED"
+                    ]
+                  },
+                  "categoryId": {
+                    "type": "integer",
+                    "example": 2
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Campaign updated"
+          },
+          "400": {
+            "description": "Invalid field"
+          },
+          "404": {
+            "description": "Campaign Not Found or Category Not Found"
+          },
+          "409": {
+            "description": "This campaign already exists"
+          },
+          "422": {
+            "description": "\"campaignStatus\" must be one of [ACTIVE, PAUSED, EXPIRED]"
+          }
+        }
+      }
     }
   }
 }
