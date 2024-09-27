@@ -30,7 +30,7 @@
                           },
                           "name": {
                             "type": "string",
-                            "example": "Campanhas de Vendas"
+                            "example": "Marketing"
                           },
                           "createdAt": {
                             "type": "string",
@@ -69,7 +69,7 @@
                 "properties": {
                   "name": {
                     "type": "string",
-                    "example": "Campanhas de Vendas"
+                    "example": "Campanha de Marketing"
                   },
                   "startDate": {
                     "type": "date",
@@ -191,7 +191,7 @@
                           },
                           "name": {
                             "type": "string",
-                            "example": "Campanhas de Vendas"
+                            "example": "Campanha de Marketing"
                           },
                           "startDate": {
                             "type": "string",
@@ -214,7 +214,7 @@
                               },
                               "name": {
                                 "type": "string",
-                                "example": "Campanhas de Marketing"
+                                "example": "Marketing"
                               },
                               "createdAt": {
                                 "type": "string",

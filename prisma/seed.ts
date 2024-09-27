@@ -5,13 +5,13 @@ async function main() {
   await prisma.categories.createMany({
     data: [
       {
-        name: 'Campanhas de Marketing',
+        name: 'Marketing',
       },
       {
-        name: 'Campanhas de Conscientização',
+        name: 'Conscientização',
       },
       {
-        name: 'Campanhas de Vendas',
+        name: 'Vendas',
       },
     ]
   })
