@@ -7,5 +7,5 @@ const campaignController = makeCampaingController();
 export default (router: Router) => {
   router.post('/campaign/create', validateCreateCampaign, campaignController.createCampaing);
   router.delete('/campaign/delete', validateDeleteCampaign, campaignController.deleteCampaing);
-  router.get('/campaign/findAll', campaignController.findAll);
+  router.get('/campaign/findAll', campaignController.findAllCampaings);
 };

@@ -24,7 +24,7 @@ export class CampaingController {
     return res.status(204).end();
   };
 
-  findAll = async (_req: Request, res: Response) => {
+  findAllCampaings = async (_req: Request, res: Response) => {
     const campaings = await this.findAllCampaignUseCase.exec();
 
     return res.status(200).json({
